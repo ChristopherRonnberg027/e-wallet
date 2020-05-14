@@ -6,14 +6,15 @@
 export default {
   data() {
     return {
-      title: "E-wallet"
+    //   title: "E-wallet"
     };
+  },
+  props:{
+      title: String
   }
 };
 </script>
 
 <style>
-h1 {
-  padding: 2em;
-}
+
 </style>

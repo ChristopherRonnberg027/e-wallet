@@ -1,10 +1,9 @@
 <template>
   <div class="home">
-    <Top />
-    <Card />
+    <Top :title="'e-wall it'" />
+    <Card :title="'active card'"/>
     <CardStack />
-    <router-link to="/addcard">AddCard</router-link>
-      <router-view />
+    <button @click="addNewCard">add a new card</button>
   </div>
 </template>
 
@@ -18,6 +17,14 @@ export default {
     Top,
     Card,
     CardStack
+  },
+  methods:{
+    addNewCard(){
+      this.$router.push({name: 'AddCard'});
+    }
   }
 };
 </script>
+<style>
+
+</style>

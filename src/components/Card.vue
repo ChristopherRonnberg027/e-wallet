@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <p class="title" v-if="title">{{title}}</p>
     <article class="card">
       <section class="top-card"></section>
       <section class="numbers">
@@ -16,10 +17,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    title: String
+  }
+};
 </script>
 
-<style>
+<style style="scss">
+
+.title {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 1em;
+}
 .wrapper {
   display: flex;
   justify-content: center;
@@ -42,7 +54,9 @@ export default {};
   "number" 
   "personal";
 }
-
+/* .top-card{
+  grid-area: symbol;
+} */
 .number {
   grid-area: number;
   font-size: 1.1em;

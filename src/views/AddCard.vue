@@ -1,24 +1,27 @@
 <template>
   <div class="wrapper">
-    <router-link to="/">Home</router-link>
-    <h1>AddCard</h1>
-    <Top />
-    <Card />
+    <Top :title="'add a new bank card'" />
+    <Card :title="'new card'" />
     <CardForm />
-    <router-view />
+    <button @click="addCard">Add Card</button>
   </div>
 </template>
 
 <script>
-import Top from '../components/Top'
-import Card from '../components/Card'
-import CardForm from '../components/CardForm'
+import Top from "../components/Top";
+import Card from "../components/Card";
+import CardForm from "../components/CardForm";
 export default {
-    components:{
-        Top,
-        Card,
-        CardForm
+  components: {
+    Top,
+    Card,
+    CardForm
+  },
+  methods: {
+    addCard() {
+      this.$router.push({ name: 'Home' });
     }
+  }
 };
 </script>
 
