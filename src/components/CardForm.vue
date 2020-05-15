@@ -1,9 +1,20 @@
 <template>
-<h1>CardForm</h1>
+  <div class="card-form">
+    <form @submit.prevent="addNewCard">
+      <input type="text" v-model="add" />
+    </form>
+    <div class="test" v-for="(card, index) in cards" :key="index"></div>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+  },
+  methods:{
+
+  }
+};
 </script>
 
 <style>

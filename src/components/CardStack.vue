@@ -1,8 +1,13 @@
 <template>
-    <div class="card-stack">
-      <Card />
-
-    </div>
+  <div class="card-stack">
+    <Card 
+    v-for="card in cardInfo" :key="card"
+    :cardName="card.name"
+    :cardColor="card.color"
+    :cardValid="card.valid"
+    :cardNumber="card.number"
+    />
+  </div>
 </template>
 
 <script>
@@ -12,7 +17,9 @@ export default {
     Card
   },
   computed: {
-    
+    cardInfo() {
+      return this.$store.state.cards;
+    }
   }
 };
 </script>

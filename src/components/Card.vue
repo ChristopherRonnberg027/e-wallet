@@ -1,16 +1,16 @@
 <template>
   <div class="wrapper">
     <p class="title" v-if="title">{{title}}</p>
-    <article class="card">
+    <article class="card" :style="{background: cardColor}">
       <section class="top-card"></section>
       <section class="numbers">
-        <p class="number">1234 5678 9101 1123</p>
+        <p class="number">{{cardNumber}}</p>
       </section>
       <section class="personal-information">
         <p class="cardholder-name">cardholder name</p>
-        <p class="name-text">christopher rönnberg</p>
+        <p class="name-text">{{cardName}}</p>
         <p class="valid-thru">valid thru</p>
-        <p class="date-text">12/22</p>
+        <p class="date-text">{{cardValid}}</p>
       </section>
     </article>
   </div>
@@ -19,13 +19,16 @@
 <script>
 export default {
   props: {
-    title: String
+    title: String,
+    cardName: String,
+    cardColor: String,
+    cardValid: String,
+    cardNumber : String
   }
 };
 </script>
 
 <style style="scss">
-
 .title {
   text-transform: uppercase;
   font-size: 0.7em;
@@ -44,15 +47,11 @@ export default {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   width: 16em;
   height: 9em;
-  padding: 1em;
-  background: yellow;
-  box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.25);
+  padding: 0.7em;
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.25);
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-area: 
-  "symbol" 
-  "number" 
-  "personal";
+  grid-template-rows: 1fr 1fr;
+  grid-area: "symbol" "number" "personal";
 }
 /* .top-card{
   grid-area: symbol;
@@ -66,7 +65,7 @@ export default {
 .personal-information {
   grid-area: personal;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
     "card-holder valid"
