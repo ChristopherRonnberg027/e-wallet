@@ -1,7 +1,12 @@
 <template>
-  <div class="wrapper">
+  <div class="addcard-wrapper">
     <Top :title="'add a new bank card'" />
-    <Card :title="'new card'" />
+    <Card :title="'new card'" 
+    :cardName="'firstname lastname'"
+    :cardColor="'grey'"
+    :cardValid="'MM/YY'"
+    :cardNumber="'XXXX XXXX XXXX XXXX'"
+    />
     <CardForm />
     <button @click="addCard">Add Card</button>
   </div>
@@ -25,5 +30,21 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+.addcard-wrapper{
+  display: grid;
+}
+
+button {
+  max-width: 280px;
+  text-transform: uppercase;
+  background: black;
+  font-weight: bolder;
+  font-size: 1em;
+  margin-top: 1em;
+  border-radius: 5px;
+  height: 3em;
+  color: white;
+}
 </style>

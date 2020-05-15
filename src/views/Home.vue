@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Top :title="'e-wall it'" />
-    <Card :title="'active card'"/>
+    <Card :title="'active card'" />
     <CardStack />
     <button @click="addNewCard">add a new card</button>
   </div>
@@ -18,13 +18,32 @@ export default {
     Card,
     CardStack
   },
-  methods:{
-    addNewCard(){
-      this.$router.push({name: 'AddCard'});
+  methods: {
+    addNewCard() {
+      this.$router.push({ name: "AddCard" });
     }
   }
 };
 </script>
-<style>
+<style scoped>
 
+.home {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  display: grid;
+}
+
+button {
+  max-width: 280px;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid black;
+  font-weight: bolder;
+  font-size: 1em;
+  margin-top: 1em;
+  border-radius: 5px;
+  height: 3em;
+}
 </style>
