@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <Top :title="'e-wall it'" />
-    <Card :title="'active card'" />
+    <!-- <Card 
+    :key="card"
+    v-if="card.active"
+    :title="'active card'" /> -->
     <CardStack />
     <button @click="addNewCard">add a new card</button>
   </div>
@@ -18,6 +21,11 @@ export default {
     Card,
     CardStack
   },
+  computed: {
+    cardInfo() {
+      return this.$store.state.cards;
+    }
+  },
   methods: {
     addNewCard() {
       this.$router.push({ name: "AddCard" });
@@ -33,6 +41,7 @@ export default {
   justify-content: center;
   align-items: center; */
   display: grid;
+  margin: 0.5em;
 }
 
 button {

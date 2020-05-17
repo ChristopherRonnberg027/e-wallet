@@ -3,7 +3,7 @@
     <Top :title="'add a new bank card'" />
     <Card :title="'new card'" 
     :cardName="'firstname lastname'"
-    :cardColor="'grey'"
+    :cardColor="'rgba(0,0,0,0.25)'"
     :cardValid="'MM/YY'"
     :cardNumber="'XXXX XXXX XXXX XXXX'"
     />

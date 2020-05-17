@@ -43,6 +43,7 @@ export default {
   color: rgba(0, 0, 0, 0.5);
   margin-bottom: 1em;
 }
+
 .card-wrapper {
   display: flex;
   justify-content: center;

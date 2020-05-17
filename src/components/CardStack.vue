@@ -1,11 +1,13 @@
 <template>
   <div class="card-stack">
-    <Card 
-    v-for="card in cardInfo" :key="card"
-    :cardName="card.name"
-    :cardColor="card.color"
-    :cardValid="card.valid"
-    :cardNumber="card.number"
+    <Card
+      class="stack"
+      v-for="card in cardInfo"
+      :key="card"
+      :cardName="card.name"
+      :cardColor="card.color"
+      :cardValid="card.valid"
+      :cardNumber="card.number"
     />
   </div>
 </template>
@@ -24,5 +26,26 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.card-stack {
+  margin-top: 3em;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 150px 1fr;
+}
+
+.stack {
+  grid-area: 1/1/2/2;
+}
+
+.stack:nth-child(3){
+  margin-bottom:3em;
+}
+.stack:nth-child(2){
+  margin-bottom:6em;
+}
+
+.stack:nth-child(1){
+  margin-bottom:9em;
+}
 </style>
