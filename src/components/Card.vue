@@ -1,6 +1,6 @@
 <template>
   <div class="card-wrapper">
-    <p class="card-title" v-if="cardActive">{{title}}</p>
+    <p class="card-title">{{title}}</p>
     <article class="card" :style="{background: cardColor}">
       <section class="top-card">
         <div class="chip">

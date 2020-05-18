@@ -1,10 +1,18 @@
 <template>
   <div class="home">
     <Top :title="'e-wall it'" />
-    <!-- <Card 
-    :key="card"
-    v-if="card.active"
-    :title="'active card'" /> -->
+
+    <Card
+      :title="'active card'"
+      class="stack"
+      v-for="card in cardInfo"
+      :key="card"
+      :cardName="card.name"
+      :cardColor="card.color"
+      :cardValid="card.valid"
+      :cardNumber="card.number"
+    />
+
     <CardStack />
     <button @click="addNewCard">add a new card</button>
   </div>
@@ -23,7 +31,7 @@ export default {
   },
   computed: {
     cardInfo() {
-      return this.$store.state.cards;
+      return this.$store.getters.activeCard;
     }
   },
   methods: {
@@ -34,7 +42,6 @@ export default {
 };
 </script>
 <style scoped>
-
 .home {
   /* display: flex;
   flex-direction: column;
