@@ -17,8 +17,9 @@
       <input class="add-ccv" type="text" v-model="addCard.cardCCV" />
       <p class="add-vendor-text">vendor</p>
       <!-- <input class="add-vendor" type="text" v-model="selectVendor" /> -->
-      <select class="add-vendor" v-model="addVendor">
-        <option v-for="(vendor, index) in vendorInfo" :key="index">{{vendor.name}}</option>
+      <select class="add-vendor" v-model="selected" @change="updateValue">
+        <option disabled value="" v-text="disabledOption"></option>
+        <option v-for="option in options" :value="option" :key="option" v-text="option.name" ></option>
       </select>
     </form>
   </div>
@@ -26,19 +27,31 @@
 
 <script>
 export default {
+  model: {
+    event: "change"
+  },
   props: {
+    disabledOption:{
+      type: String,
+      default: "Select your vendor"
+    },
     addCard: Object
   },
   computed: {
-    vendorInfo() {
+    options() {
       return this.$store.state.vendors;
     }
+  },
+  value: {
+    type : [String, Number],
+    default : null
   },
   data() {
     return {
       addValidThru: "",
       addCCV: "",
-      addCardHolderName: ""
+      addCardHolderName: "",
+      selected : this.value
     };
   },
   methods: {
@@ -51,6 +64,9 @@ export default {
         number: this.addCardNumber,
         active: false
       });
+    },
+    updateValue(){
+      this.$emit('change', this.selected)
     }
   }
 };

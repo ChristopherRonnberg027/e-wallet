@@ -15,16 +15,16 @@ export default new Vuex.Store({
     },
     vendors: [
       {
-        id: 1, name: 'Bitcoin Inc', image: '../assets/vendor-bitcoin.svg', color: '#fdb455'
+        id: 1, name: 'Bitcoin Inc', image: '@/assets/vendor-bitcoin.svg', color: '#fdb455'
       },
       {
-        id: 2, name: 'Ninja Bank', image: '../assets/vendor-ninja.svg', color: '#3d3d3d'
+        id: 2, name: 'Ninja Bank', image: '@/assets/vendor-ninja.svg', color: '#3d3d3d'
       },
       {
-        id: 3, name: 'Block Chain Inc', image: '../assets/vendor-blockchain.svg', color: '#7b53d9'
+        id: 3, name: 'Block Chain Inc', image: '@/assets/vendor-blockchain.svg', color: '#7b53d9'
       },
       {
-        id: 4, name: 'Evil Corp', image: '../assets/vendor-evil.svg', color: '#d22f4d'
+        id: 4, name: 'Evil Corp', image: '@/assets/vendor-evil.svg', color: '#d22f4d'
       }
     ]
   },
@@ -34,16 +34,26 @@ export default new Vuex.Store({
         return !card.active
       })
     },
-    activeCard(state){
+    activeCard(state) {
       return state.cards.filter(card => {
         return card.active
       })
     },
-    getVendors(state){
+    getVendors(state) {
       return state.vendors
     }
   },
   mutations: {
+    // setActive(state, payload) {
+    //   state.cards.filter(card => {
+    //     return card.active
+    //   })
+    // },
+    // setDardActive(state, activeId) {
+    //   state.cards.filter(card => {
+
+    //   })
+    // }
   },
   actions: {
   },

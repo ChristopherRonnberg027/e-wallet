@@ -4,10 +4,10 @@
     <article class="card" :style="{background: cardColor}">
       <section class="top-card">
         <div class="chip">
-          <img src="../assets/chip-dark.svg" alt="chip" />
+          <img src="../assets/chip-light.svg" alt="chip" />
         </div>
         <div class="symbol">
-          <img v-for="(vendor, index) in vendorType" :key="index" src="vendor.image" alt="personalsymbol" />
+          <img src="vendor.image" alt="personalsymbol"  />
         </div>
       </section>
       <section class="numbers">
@@ -54,6 +54,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  /* max-width: min-content; */
 }
 .card {
   box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.25);
@@ -63,6 +64,10 @@ export default {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 
+  /* width: 90vw;
+  max-width: 20rem;
+  height: 56.75vw;
+  max-height: 12.61rem; */
   width: 16em;
   height: 9em;
   padding: 0.7em;
