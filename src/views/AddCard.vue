@@ -2,7 +2,7 @@
   <div class="addcard-wrapper">
     <Top :title="'add a new bank card'" />
     <Card :card="card" :title="'New Card'" />
-    <CardForm :card="cards" />
+    <CardForm :card="card" />
     <button @click="toAddCard">Add Card</button>
   </div>
 </template>
@@ -14,13 +14,13 @@ import CardForm from "../components/CardForm";
 export default {
   data() {
     return {
-      cards: {
+      card: {
         title: "new card",
-        cardName: "firstname lastname",
-        cardColor: "rgba(0,0,0,0.25)",
-        cardValid: "MM/YY",
-        cardNumber: "XXXX XXXX XXXX XXXX",
-        cardCCV: "XXX"
+        name: "firstname lastname",
+        color: "rgba(0,0,0,0.25)",
+        valid: "MM/YY",
+        number: "XXXX XXXX XXXX XXXX",
+        ccv: "XXX"
       }
     };
   },

@@ -1,25 +1,26 @@
 <template>
   <div class="card-wrapper">
-    <p class="card-title">{{title}}</p>
-    <!-- <article class="card" v-bind:class="{cardVendor}" @click="setActive()"> -->
-      <article class="card" :style="{background: cardColor}">
+    <p class="card-title" 
+    v-if="title">{{title}}</p>
+    <article class="card" 
+    :style="{background: vendor.color}" 
+    v-on:click="clickThis">
       <section class="top-card">
         <div class="chip">
           <img v-bind:src="getChip()" alt="chip" />
         </div>
         <div class="symbol">
-          <!-- <img :src="getVendor()" alt="symbol" /> -->
-          <img src="vendor.image" alt="symbol" />
+          <img :src="getVendor()" alt="symbol" />
         </div>
       </section>
       <section class="numbers">
-        <p class="number">{{cardNumber}}</p>
+        <p class="number">{{card.number}}</p>
       </section>
       <section class="personal-information">
         <p class="cardholder-name">cardholder name</p>
-        <p class="name-text">{{cardName}}</p>
+        <p class="name-text">{{card.name}}</p>
         <p class="valid-thru">valid thru</p>
-        <p class="date-text">{{cardValid}}</p>
+        <p class="date-text">{{card.valid}}</p>
       </section>
     </article>
   </div>
@@ -28,31 +29,26 @@
 <script>
 export default {
   props: {
-    title: String,
-    cardName: String,
-    cardColor: String,
-    cardValid: String,
-    cardNumber: String,
-    cardActive: Boolean,
-    cardVendor: String
+    card: Object,
+    title: String
   },
   computed: {
-    // setActive(){
-    //   return this.$store.getters.
-    // }
+    vendor() {
+      return this.$store.state.vendors[this.card.vendor];
+    }
   },
   methods: {
-    setActive() {
-      
-    },
     getVendor() {
-      return require("../assets/vendor-" + this.cardVendor);
+      return require("@/assets/vendor-" + this.card.vendor + ".svg");
     },
     getChip() {
       return require("../assets/chip-light.svg");
     },
-    formatDate(cardValid) {
-      return cardValid.substring(0, 2) + "/" + cardValid.substring(2, 4);
+    clickThis() {
+      this.$store.dispatch("swapActiveCard", {
+        index: this.stackIndex,
+        card: this.card
+      });
     }
   }
 };

@@ -1,23 +1,21 @@
 <template>
   <div class="card-form-wrapper">
-    <form @submit.prevent="addNewCard" class="card-form">
+    <form class="card-form">
       <p class="add-number-text">card number</p>
-      <input class="add-number" type="text" v-model="card.cardNumber" />
+      <input class="add-number" 
+      type="text" 
+      v-model="inputValues.number" />
       <p class="add-name-text">cardholder name</p>
-      <input
-        class="add-name"
-        type="text"
-        placeholder="firstname lastname"
-        v-model="card.cardName"
-      />
+      <input class="add-name" 
+      type="text" placeholder="firstname lastname" 
+      v-model="inputValues.name" />
       <p class="add-valid-text">valid thru</p>
-      <input class="add-valid" type="text" v-model="card.cardValid" />
+      <input class="add-valid" type="text" v-model="inputValues.valid" />
       <p class="add-ccv-text">ccv</p>
-      <input class="add-ccv" type="text" v-model="card.cardCCV" />
+      <input class="add-ccv" type="text" v-model="inputValues.ccv" />
       <p class="add-vendor-text">vendor</p>
-      <!-- <input class="add-vendor" type="text" v-model="selectVendor" /> -->
-      <select class="add-vendor" v-model="selected" @change="updateValue">
-        <option v-for="vendor in options" :value="option" :key="vendor" v-text="vendor.name" ></option>
+      <select class="add-vendor" v-model="inputValues.vendor" @change="changeVendor">
+        <option v-for="vendor in vendors" :key="vendor" v-text="vendor.name"></option>
       </select>
     </form>
   </div>
@@ -29,42 +27,29 @@ export default {
     event: "change"
   },
   props: {
-    disabledOption:{
-      type: String,
-      default: "Select your vendor"
-    },
     card: Object
   },
   computed: {
-    options() {
+    vendors() {
       return this.$store.getters.getVendorList;
     }
   },
-  value: {
-    type : [String, Number],
-    default : null
-  },
   data() {
     return {
-      addValidThru: "",
-      addCCV: "",
-      addCardHolderName: "",
-      selected : this.value
+      inputValues : this.card
     };
   },
   methods: {
-    // addNewCard(newcard) {
-    //   this.$store.state.cards.push({
-    //     id: this.addCCV,
-    //     name: this.addCardHolderName,
-    //     color: "red",
-    //     valid: this.addValidThru,
-    //     number: this.addCardNumber,
-    //     active: false
-    //   });
-    // },
-    updateValue(){
-      this.$emit('change', this.selected)
+    addNewCard() {
+      this.$store.state.userCards.push({
+        name: this.addCardHolderName,
+        valid: this.addValidThru,
+        number: this.addCardNumber,
+      });
+      // this.$store.getters.addCardToStack
+    },
+    changeVendor(){
+      this.inputValues.vendor
     }
   }
 };

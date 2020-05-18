@@ -3,7 +3,8 @@
     <Top :title="'e-wall it'" />
 
     <Card :title="'active card'" :card="activeCard" />
-
+<!-- {{activeCard}}
+{{cardStack}} -->
     <!-- <Card
       :title="'active card'"
       class="stack"
@@ -14,8 +15,7 @@
       :cardValid="card.valid"
       :cardNumber="card.number"
     />-->
-
-    <CardStack :cards="cardStack"/>
+    <CardStack :card="cardStack"/>
     <button @click="addNewCard">add a new card</button>
   </div>
 </template>
@@ -35,14 +35,17 @@ export default {
     // cardInfo() {
     //   return this.$store.getters.activeCard;
     // }
-    getActiveCard() {
-      return this.$store.getters.activeCard;
-    },
+    // getActiveCard() {
+    //   return this.$store.getters.activeCard;
+    // },
     activeCard() {
       return this.$store.getters.getActiveCard;
     },
+
     cardStack() {
-      return this.$store.getters.getCardStackList;
+      // return this.$store.getters.getCardStackList;
+      // return this.$store.getters.getCardList;
+      return this.$store.commit('loadCardStack')
     }
   },
   methods: {
