@@ -2,12 +2,11 @@
   <div class="card-stack">
     <Card
       class="stack"
-      v-for="card in cardInfo"
-      :key="card"
+      v-for="card in cards"
+      :key="card.number"
       :cardName="card.name"
       :cardColor="card.color"
       :cardValid="card.valid"
-      :cardNumber="card.number"
       
     />
   </div>
@@ -19,12 +18,15 @@ export default {
   components: {
     Card
   },
-  computed: {
-    cardInfo() {
-      // return this.$store.state.cards;
-      return this.$store.getters.unActiveCards;
-    }
+  props:{
+    cards : Array
   }
+  // computed: {
+  //   cardInfo() {
+  //     // return this.$store.state.cards;
+  //     return this.$store.getters.unActiveCards;
+  //   }
+  // }
 };
 </script>
 

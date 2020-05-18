@@ -2,7 +2,7 @@
   <div class="home">
     <Top :title="'e-wall it'" />
 
-    <Card :cardInfo="getActiveCard" />
+    <Card :title="'active card'" :card="activeCard" />
 
     <!-- <Card
       :title="'active card'"
@@ -13,17 +13,17 @@
       :cardColor="card.color"
       :cardValid="card.valid"
       :cardNumber="card.number"
-    /> -->
+    />-->
 
-    <CardStack />
+    <CardStack :cards="cardStack"/>
     <button @click="addNewCard">add a new card</button>
   </div>
 </template>
 
 <script>
-import Top from "../components/Top";
-import Card from "../components/Card";
-import CardStack from "../components/CardStack";
+import Top from "@/components/Top.vue";
+import Card from "@/components/Card.vue";
+import CardStack from "@/components/CardStack.vue";
 export default {
   name: "Home",
   components: {
@@ -37,6 +37,12 @@ export default {
     // }
     getActiveCard() {
       return this.$store.getters.activeCard;
+    },
+    activeCard() {
+      return this.$store.getters.getActiveCard;
+    },
+    cardStack() {
+      return this.$store.getters.getCardStackList;
     }
   },
   methods: {

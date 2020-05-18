@@ -2,22 +2,22 @@
   <div class="card-form-wrapper">
     <form @submit.prevent="addNewCard" class="card-form">
       <p class="add-number-text">card number</p>
-      <input class="add-number" type="text" v-model="addCard.cardNumber" />
+      <input class="add-number" type="text" v-model="card.cardNumber" />
       <p class="add-name-text">cardholder name</p>
       <input
         class="add-name"
         type="text"
         placeholder="firstname lastname"
-        v-model="addCard.cardName"
+        v-model="card.cardName"
       />
       <p class="add-valid-text">valid thru</p>
-      <input class="add-valid" type="text" v-model="addCard.cardValid" />
+      <input class="add-valid" type="text" v-model="card.cardValid" />
       <p class="add-ccv-text">ccv</p>
-      <input class="add-ccv" type="text" v-model="addCard.cardCCV" />
+      <input class="add-ccv" type="text" v-model="card.cardCCV" />
       <p class="add-vendor-text">vendor</p>
       <!-- <input class="add-vendor" type="text" v-model="selectVendor" /> -->
       <select class="add-vendor" v-model="selected" @change="updateValue">
-        <option v-for="vendor in options" :value="option" :key="vendor" v-text="vendor.vendor" ></option>
+        <option v-for="vendor in options" :value="option" :key="vendor" v-text="vendor.name" ></option>
       </select>
     </form>
   </div>
@@ -33,11 +33,11 @@ export default {
       type: String,
       default: "Select your vendor"
     },
-    addCard: Object
+    card: Object
   },
   computed: {
     options() {
-      return this.$store.getters.getAllVendor;
+      return this.$store.getters.getVendorList;
     }
   },
   value: {
@@ -53,16 +53,16 @@ export default {
     };
   },
   methods: {
-    addNewCard(newcard) {
-      this.$store.state.cards.push({
-        id: this.addCCV,
-        name: this.addCardHolderName,
-        color: "red",
-        valid: this.addValidThru,
-        number: this.addCardNumber,
-        active: false
-      });
-    },
+    // addNewCard(newcard) {
+    //   this.$store.state.cards.push({
+    //     id: this.addCCV,
+    //     name: this.addCardHolderName,
+    //     color: "red",
+    //     valid: this.addValidThru,
+    //     number: this.addCardNumber,
+    //     active: false
+    //   });
+    // },
     updateValue(){
       this.$emit('change', this.selected)
     }
