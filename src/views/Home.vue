@@ -2,7 +2,9 @@
   <div class="home">
     <Top :title="'e-wall it'" />
 
-    <Card
+    <Card :cardInfo="getActiveCard" />
+
+    <!-- <Card
       :title="'active card'"
       class="stack"
       v-for="card in cardInfo"
@@ -11,7 +13,7 @@
       :cardColor="card.color"
       :cardValid="card.valid"
       :cardNumber="card.number"
-    />
+    /> -->
 
     <CardStack />
     <button @click="addNewCard">add a new card</button>
@@ -30,7 +32,10 @@ export default {
     CardStack
   },
   computed: {
-    cardInfo() {
+    // cardInfo() {
+    //   return this.$store.getters.activeCard;
+    // }
+    getActiveCard() {
       return this.$store.getters.activeCard;
     }
   },

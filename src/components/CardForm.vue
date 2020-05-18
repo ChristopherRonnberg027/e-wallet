@@ -1,4 +1,3 @@
-
 <template>
   <div class="card-form-wrapper">
     <form @submit.prevent="addNewCard" class="card-form">
@@ -18,8 +17,7 @@
       <p class="add-vendor-text">vendor</p>
       <!-- <input class="add-vendor" type="text" v-model="selectVendor" /> -->
       <select class="add-vendor" v-model="selected" @change="updateValue">
-        <option disabled value="" v-text="disabledOption"></option>
-        <option v-for="option in options" :value="option" :key="option" v-text="option.name" ></option>
+        <option v-for="vendor in options" :value="option" :key="vendor" v-text="vendor.vendor" ></option>
       </select>
     </form>
   </div>
@@ -39,7 +37,7 @@ export default {
   },
   computed: {
     options() {
-      return this.$store.state.vendors;
+      return this.$store.getters.getAllVendor;
     }
   },
   value: {

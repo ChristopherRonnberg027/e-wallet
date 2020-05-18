@@ -1,13 +1,15 @@
 <template>
   <div class="card-wrapper">
     <p class="card-title">{{title}}</p>
-    <article class="card" :style="{background: cardColor}">
+    <!-- <article class="card" v-bind:class="{cardVendor}" @click="setActive()"> -->
+      <article class="card" :style="{background: cardColor}">
       <section class="top-card">
         <div class="chip">
-          <img src="../assets/chip-light.svg" alt="chip" />
+          <img v-bind:src="getChip()" alt="chip" />
         </div>
         <div class="symbol">
-          <img src="vendor.image" alt="personalsymbol"  />
+          <!-- <img :src="getVendor()" alt="symbol" /> -->
+          <img src="vendor.image" alt="symbol" />
         </div>
       </section>
       <section class="numbers">
@@ -31,11 +33,26 @@ export default {
     cardColor: String,
     cardValid: String,
     cardNumber: String,
-    cardActive: Boolean
+    cardActive: Boolean,
+    cardVendor: String
   },
   computed: {
-    vendorType(){
-      return this.$store.getters.getVendors
+    // setActive(){
+    //   return this.$store.getters.
+    // }
+  },
+  methods: {
+    setActive() {
+      
+    },
+    getVendor() {
+      return require("../assets/vendor-" + this.cardVendor);
+    },
+    getChip() {
+      return require("../assets/chip-light.svg");
+    },
+    formatDate(cardValid) {
+      return cardValid.substring(0, 2) + "/" + cardValid.substring(2, 4);
     }
   }
 };
@@ -141,5 +158,25 @@ export default {
 
 .date-text {
   text-align: right;
+}
+
+.ninja {
+  background: rgb(0, 0, 0);
+  color: white;
+}
+
+.evil {
+  background: rgb(209, 24, 24);
+  color: white;
+}
+
+.blockchain {
+  background: rgb(117, 51, 162);
+  color: white;
+}
+
+.bitcoin {
+  background: rgb(248, 162, 34);
+  color: white;
 }
 </style>
