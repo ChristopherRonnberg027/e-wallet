@@ -1,13 +1,14 @@
 <template>
   <div class="addcard-wrapper">
     <Top :title="'add a new bank card'" />
-    <Card :title="'new card'" 
-    :cardName="'firstname lastname'"
-    :cardColor="'rgba(0,0,0,0.25)'"
-    :cardValid="'MM/YY'"
-    :cardNumber="'XXXX XXXX XXXX XXXX'"
+    <Card
+      :title="'new card'"
+      :cardName="addCard.cardName"
+      :cardColor="'rgba(0,0,0,0.25)'"
+      :cardValid="addCard.cardValid"
+      :cardNumber="addCard.cardNumber"
     />
-    <CardForm />
+    <CardForm :addCard="addCard" />
     <button @click="addCard">Add Card</button>
   </div>
 </template>
@@ -17,6 +18,18 @@ import Top from "../components/Top";
 import Card from "../components/Card";
 import CardForm from "../components/CardForm";
 export default {
+  data() {
+    return {
+      addCard: {
+        title: "new card",
+        cardName: "firstname lastname",
+        cardColor: "rgba(0,0,0,0.25)",
+        cardValid: "MM/YY",
+        cardNumber: "XXXX XXXX XXXX XXXX",
+        cardCCV : 'XXX'
+      }
+    };
+  },
   components: {
     Top,
     Card,
@@ -24,15 +37,14 @@ export default {
   },
   methods: {
     addCard() {
-      this.$router.push({ name: 'Home' });
+      this.$router.push({ name: "Home" });
     }
   }
 };
 </script>
 
 <style scoped>
-
-.addcard-wrapper{
+.addcard-wrapper {
   display: grid;
 }
 

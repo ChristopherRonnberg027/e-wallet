@@ -7,7 +7,7 @@
           <img src="../assets/chip-dark.svg" alt="chip" />
         </div>
         <div class="symbol">
-          <img src="../assets/vendor-evil.svg" alt="personalsymbol" />
+          <img v-for="(vendor, index) in vendorType" :key="index" src="vendor.image" alt="personalsymbol" />
         </div>
       </section>
       <section class="numbers">
@@ -32,6 +32,11 @@ export default {
     cardValid: String,
     cardNumber: String,
     cardActive: Boolean
+  },
+  computed: {
+    vendorType(){
+      return this.$store.getters.getVendors
+    }
   }
 };
 </script>
@@ -69,7 +74,8 @@ export default {
     "number"
     "personal";
 
-    text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1),
+    1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .top-card {

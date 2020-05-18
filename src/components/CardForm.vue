@@ -3,26 +3,22 @@
   <div class="card-form-wrapper">
     <form @submit.prevent="addNewCard" class="card-form">
       <p class="add-number-text">card number</p>
-      <input class="add-number" type="text" v-model="addCardNumber" />
+      <input class="add-number" type="text" v-model="addCard.cardNumber" />
       <p class="add-name-text">cardholder name</p>
       <input
         class="add-name"
         type="text"
         placeholder="firstname lastname"
-        v-model="addCardHolderName"
+        v-model="addCard.cardName"
       />
       <p class="add-valid-text">valid thru</p>
-      <input class="add-valid" type="text" v-model="addValidThru" />
+      <input class="add-valid" type="text" v-model="addCard.cardValid" />
       <p class="add-ccv-text">ccv</p>
-      <input class="add-ccv" type="text" v-model="addCCV" />
+      <input class="add-ccv" type="text" v-model="addCard.cardCCV" />
       <p class="add-vendor-text">vendor</p>
       <!-- <input class="add-vendor" type="text" v-model="selectVendor" /> -->
-      <select class="add-vendor" >
-        <option v-for="vendor in vendorInfo" :key="vendor" >{{vendor.name}}</option>
-        <!-- <option>bitcoin inc</option>
-        <option>ninja bank</option>
-        <option>block chain inc</option>
-        <option>evil corp</option>-->
+      <select class="add-vendor" v-model="addVendor">
+        <option v-for="(vendor, index) in vendorInfo" :key="index">{{vendor.name}}</option>
       </select>
     </form>
   </div>
@@ -30,15 +26,31 @@
 
 <script>
 export default {
+  props: {
+    addCard: Object
+  },
   computed: {
     vendorInfo() {
-      return this.$store.state.vendorTypes;
+      return this.$store.state.vendors;
     }
   },
+  data() {
+    return {
+      addValidThru: "",
+      addCCV: "",
+      addCardHolderName: ""
+    };
+  },
   methods: {
-    addNewCard(newcard){
-      this.$store.state.cards.push({id: addCCV, name: addCardHolderName, color: 'red', valid: addValidThru, number: addCardNumber, active : false})
-      console.log(this.$store.state.cards)
+    addNewCard(newcard) {
+      this.$store.state.cards.push({
+        id: this.addCCV,
+        name: this.addCardHolderName,
+        color: "red",
+        valid: this.addValidThru,
+        number: this.addCardNumber,
+        active: false
+      });
     }
   }
 };
