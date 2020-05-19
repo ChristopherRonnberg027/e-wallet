@@ -30,18 +30,11 @@ export default {
   grid-template-columns: 1fr;
   grid-auto-rows: 1em;
   border: none;
-  transition: 0.2s;
+  transition: 0.2s, border;
 }
 
 .card-stack:hover {
   grid-auto-rows: 10em;
-}
-
-.stack{
   border: none
-}
-
-.stack:focus{
-  border: 2px solid indigo;
 }
 </style>

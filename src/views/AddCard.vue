@@ -1,8 +1,9 @@
 <template>
   <div class="addcard-wrapper">
-    <Top :title="'add a new bank card'" />
-    <Card v-bind:card="card" :title="'New Card'" />
+    <Top :topTitle="'add a new bank card'" />
+    <Card v-bind:card="card" :title="'new card'" />
     <CardForm v-bind:card="card" />
+    
   </div>
 </template>
 
@@ -15,10 +16,10 @@ export default {
     return {
       card: {
         title: "new card",
-        name: "firstname lastname",
-        valid: "MM/YY",
-        number: "XXXX XXXX XXXX XXXX",
-        ccv: "XXX",
+        name: "",
+        valid: "",
+        number: "",
+        ccv: "",
         vendor : 'bitcoin'
       }
     };
@@ -38,4 +39,5 @@ export default {
 .addcard-wrapper {
   display: grid;
 }
+
 </style>

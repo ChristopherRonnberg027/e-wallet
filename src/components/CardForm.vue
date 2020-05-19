@@ -1,23 +1,31 @@
 <template>
   <div class="card-form-wrapper">
     <p class="card-title">{{title}}</p>
-    <div class="card-form" >
+    <div class="card-form">
       <p class="add-number-text">card number</p>
-      <input class="add-number" type="text" v-model="inputValues.number" />
+      <input class="add-number" type="text" 
+      placeholder="XXXX XXXX XXXX XXXX" v-model="card.number" />
       <p class="add-name-text">cardholder name</p>
-      <input
-        class="add-name"
-        type="text"
-        placeholder="firstname lastname"
-        v-model="inputValues.name"
-      />
+      <input class="add-name" type="text" placeholder="firstname lastname" v-model="card.name" />
       <p class="add-valid-text">valid thru</p>
-      <input class="add-valid" type="text" v-model="inputValues.valid" />
+      <input class="add-valid" 
+      type="text" 
+      placeholder="MM/YY" 
+      v-model="card.valid" />
       <p class="add-ccv-text">ccv</p>
-      <input class="add-ccv" type="text" v-model="inputValues.ccv" />
+      <input 
+      class="add-ccv" 
+      type="text" 
+      placeholder="XXX" 
+      v-model="card.ccv" />
       <p class="add-vendor-text">vendor</p>
-      <select class="add-vendor" v-model="inputValues.vendor" @change="changeVendor">
-        <option v-for="vendor in vendors" :key="vendor" :style="{background: vendor.color}" v-text="vendor.name"></option>
+      <select class="add-vendor" v-model="card.vendor" @change="changeVendor">
+        <option
+          v-for="(vendor, index) in vendors"
+          :key="index"
+          :style="{background: vendor.color}"
+          v-text="vendor.name"
+        ></option>
       </select>
       <button @click="toAddCard">Add Card</button>
     </div>
@@ -39,24 +47,29 @@ export default {
   },
   data() {
     return {
-      inputValues: this.card,
+      // inputValues: this.card,
+      // valid : '',
+      // number : '',
+      // name : '',
+      // ccv : '',
+      // vendor : ''
     };
   },
   methods: {
     toAddCard() {
       const newCard = {
-      valid : this.inputValues.valid,
-      number : this.inputValues.number,
-      name : this.inputValues.name,
-      ccv : this.inputValues.ccv,
-      vendor : this.inputValues.vendor
-      }
+        valid: this.card.valid,
+        number: this.card.number,
+        name: this.card.name,
+        ccv: this.card.ccv,
+        vendor: this.card.vendor
+      };
       this.$store.state.cards.push(newCard);
       this.$router.push({ name: "Home" });
     },
     changeVendor() {
-      console.log(this.inputValues.vendor)
-      this.inputValues.vendor;
+      console.log(this.card.vendor);
+      this.card.vendor;
     }
   }
 };

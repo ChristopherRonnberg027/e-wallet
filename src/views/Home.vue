@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <Top :title="'e-wall it'" />
-    <Card :title="'active card'" :card="activeCard" :style="{borderBottom: '2px solid indigo', paddingBottom: '1em'}" />
+    <Top :topTitle="'e-wall it'" />
+    <Card :title="'active card'" :card="cardActive" />
     
     <CardStack :cards="cardsInStack"/>
     <button @click="toAddNewCard">add a new card</button>
@@ -20,7 +20,7 @@ export default {
     CardStack
   },
   computed: {
-    activeCard() {
+    cardActive() {
       return this.$store.getters.getActiveCard;
     },
 

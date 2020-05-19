@@ -57,17 +57,18 @@ export default new Vuex.Store({
   },
   getters: {
     getListOfVendor(state) {
-      let vendorList = []
+      let listOfVendor = []
       for (const vendor in state.vendors) {
-        let listedVendor = { id: vendor, name: state.vendors[vendor].name }
-        vendorList.push(listedVendor)
+        let vendorInList = { id: vendor, name: state.vendors[vendor].name }
+        listOfVendor.push(vendorInList)
       }
-      return vendorList;
+      return listOfVendor;
     },
     
     getActiveCard(state){
       return state.cards.find(card => card.number == state.activeCardNumber)
     },
+
     getNonActiveCards(state){
       return state.cards.filter(card => card.number !== state.activeCardNumber)
     }
@@ -87,9 +88,9 @@ export default new Vuex.Store({
 
   actions: {
     switchCard(context, payload) {
-      // let activeCard = context.getters.getActiveCard
+      let activeCard = context.getters.getActiveCard
       context.commit('setActiveCard', payload.card.number)
-      context.commit('addCardToStack', { index: payload.index, card: activeCardNumber })
+      context.commit('addCardToStack', { index: payload.index, card: activeCard })
     }
   },
   modules: {

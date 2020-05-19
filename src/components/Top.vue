@@ -1,13 +1,13 @@
 <template>
   <div class="top-container">
-    <h1>{{title}}</h1>
+    <h1>{{topTitle}}</h1>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    title: String
+    topTitle: String
   }
 };
 </script>
