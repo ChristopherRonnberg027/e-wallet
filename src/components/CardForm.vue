@@ -3,21 +3,13 @@
     <p class="card-title">{{title}}</p>
     <div class="card-form">
       <p class="add-number-text">card number</p>
-      <input class="add-number" type="text" 
-      placeholder="XXXX XXXX XXXX XXXX" v-model="card.number" />
+      <input class="add-number" type="text" placeholder="XXXX XXXX XXXX XXXX" v-model="card.number" />
       <p class="add-name-text">cardholder name</p>
       <input class="add-name" type="text" placeholder="firstname lastname" v-model="card.name" />
       <p class="add-valid-text">valid thru</p>
-      <input class="add-valid" 
-      type="text" 
-      placeholder="MM/YY" 
-      v-model="card.valid" />
+      <input class="add-valid" type="text" placeholder="MM/YY" v-model="card.valid" />
       <p class="add-ccv-text">ccv</p>
-      <input 
-      class="add-ccv" 
-      type="text" 
-      placeholder="XXX" 
-      v-model="card.ccv" />
+      <input class="add-ccv" type="text" placeholder="XXX" v-model="card.ccv" />
       <p class="add-vendor-text">vendor</p>
       <select class="add-vendor" v-model="card.vendor" @change="changeVendor">
         <option
@@ -44,6 +36,9 @@ export default {
     vendors() {
       return this.$store.getters.getListOfVendor;
     }
+    // vendor() {
+    //   return this.$store.state.vendors[this.card.vendor];
+    // }
   },
   data() {
     return {
