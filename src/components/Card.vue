@@ -1,7 +1,6 @@
 <template>
   <div class="card-wrapper">
-    <p class="card-title" 
-    v-if="title">{{title}}</p>
+    <p class="card-title" >{{title}}</p>
     <article class="card" 
     :style="{background: vendor.color}" 
     v-on:click="clickThis">
@@ -154,25 +153,5 @@ export default {
 
 .date-text {
   text-align: right;
-}
-
-.ninja {
-  background: rgb(0, 0, 0);
-  color: white;
-}
-
-.evil {
-  background: rgb(209, 24, 24);
-  color: white;
-}
-
-.blockchain {
-  background: rgb(117, 51, 162);
-  color: white;
-}
-
-.bitcoin {
-  background: rgb(248, 162, 34);
-  color: white;
 }
 </style>

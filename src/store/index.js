@@ -5,31 +5,31 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    activeCard: "1234567891011123",
+    activeCard: "5334 5554 8665 1233",
     cardStackList: [],
     userCards: [
       {
          name: 'Christopher Rönnberg', 
          valid: '9/22', 
-         number: '1234567891011123', 
+         number: '5566 4568 9101 1123', 
          vendor: "bitcoin", 
          ccv: "123" },
       { 
         name: 'Elliott SharkfaceKillah', 
         valid: '10/25', 
-        number: '3423344423214322', 
+        number: '3423 3444 2321 4322', 
         vendor: "blockchain", 
         ccv: "324" },
       { 
         name: 'Linda Gullbrandsson',   
         valid: '11/20', 
-        number: '4323423274424544', 
+        number: '4323 4232 7442 4544', 
         vendor: "evil", 
         ccv: "647" },
       { 
         name: 'Alejandro Jodorowsky', 
         valid: '2/23', 
-        number: '5334555486651233', 
+        number: '5334 5554 8665 1233', 
         vendor: "ninja", 
         ccv: "543" }
     ],
@@ -82,6 +82,9 @@ export default new Vuex.Store({
 
     getCardStackList(state) {
       return state.cardStackList
+    },
+    getNonActiveCards(state){
+      return state.userCards.filter(card => card.number !== state.activeCard)
     }
   },
 

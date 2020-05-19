@@ -41,11 +41,12 @@ export default {
   },
   methods: {
     addNewCard() {
-      this.$store.state.userCards.push({
+      const newCard = {
         name: this.addCardHolderName,
         valid: this.addValidThru,
         number: this.addCardNumber,
-      });
+      }
+      this.$store.state.userCards.push(newCard);
       // this.$store.getters.addCardToStack
     },
     changeVendor(){

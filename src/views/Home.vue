@@ -2,20 +2,9 @@
   <div class="home">
     <Top :title="'e-wall it'" />
 
-    <Card :title="'active card'" :card="activeCard" />
-<!-- {{activeCard}}
-{{cardStack}} -->
-    <!-- <Card
-      :title="'active card'"
-      class="stack"
-      v-for="card in cardInfo"
-      :key="card"
-      :cardName="card.name"
-      :cardColor="card.color"
-      :cardValid="card.valid"
-      :cardNumber="card.number"
-    />-->
-    <CardStack :card="cardStack"/>
+    <Card :title="'active card'" v-bind:card="activeCard" />
+    
+    <CardStack v-bind:card="cardsInStack"/>
     <button @click="addNewCard">add a new card</button>
   </div>
 </template>
@@ -32,20 +21,12 @@ export default {
     CardStack
   },
   computed: {
-    // cardInfo() {
-    //   return this.$store.getters.activeCard;
-    // }
-    // getActiveCard() {
-    //   return this.$store.getters.activeCard;
-    // },
     activeCard() {
       return this.$store.getters.getActiveCard;
     },
 
-    cardStack() {
-      // return this.$store.getters.getCardStackList;
-      // return this.$store.getters.getCardList;
-      return this.$store.commit('loadCardStack')
+    cardsInStack() {
+      return this.$store.getters.getNonActiveCards;
     }
   },
   methods: {
@@ -57,10 +38,6 @@ export default {
 </script>
 <style scoped>
 .home {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
   display: grid;
   margin: 0.5em;
 }

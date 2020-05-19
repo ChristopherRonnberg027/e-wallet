@@ -1,13 +1,7 @@
 <template>
   <div class="card-stack">
-    <Card
-      class="stack"
-      v-for="(card, index) in cardList"
-      :key="card.number"
-      :name="card.name"
-      :valid="card.valid"
-      :stackIndex ="index"
-    />
+    <Card class="stack" v-for="(card, index) in cardInfo" :key="card.number" :stackIndex="index" />
+    {{cardInfo}}
   </div>
 </template>
 
@@ -17,10 +11,15 @@ export default {
   components: {
     Card
   },
-  props:{
-    cardList : Array
-  }
-
+  props: {
+    cardsInStack: Array
+  },
+  computed: {
+    cardInfo() {
+      return this.$store.getters.getNonActiveCards;
+    }
+  },
+  method: {}
 };
 </script>
 

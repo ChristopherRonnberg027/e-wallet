@@ -1,8 +1,8 @@
 <template>
   <div class="addcard-wrapper">
     <Top :title="'add a new bank card'" />
-    <Card :card="card" :title="'New Card'" />
-    <CardForm :card="card" />
+    <Card v-bind:card="card" :title="'New Card'" />
+    <CardForm v-bind:card="card" />
     <button @click="toAddCard">Add Card</button>
   </div>
 </template>
@@ -17,10 +17,10 @@ export default {
       card: {
         title: "new card",
         name: "firstname lastname",
-        color: "rgba(0,0,0,0.25)",
         valid: "MM/YY",
         number: "XXXX XXXX XXXX XXXX",
-        ccv: "XXX"
+        ccv: "XXX",
+        vendor : 'bitcoin'
       }
     };
   },
@@ -49,7 +49,7 @@ button {
   font-weight: bolder;
   font-size: 1em;
   margin-top: 1em;
-  border-radius: 5px;
+  border-radius: 6px;
   height: 3em;
   color: white;
 }
