@@ -44,7 +44,8 @@ export default {
       return require("../assets/chip-light.svg");
     },
     clickThis() {
-      this.$store.dispatch("swapActiveCard", {
+      console.log("you clicked me")
+      this.$store.dispatch("switchCard", {
         index: this.stackIndex,
         card: this.card
       });

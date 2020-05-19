@@ -1,23 +1,26 @@
 <template>
   <div class="card-form-wrapper">
-    <form class="card-form">
+    <p class="card-title">{{title}}</p>
+    <div class="card-form" >
       <p class="add-number-text">card number</p>
-      <input class="add-number" 
-      type="text" 
-      v-model="inputValues.number" />
+      <input class="add-number" type="text" v-model="inputValues.number" />
       <p class="add-name-text">cardholder name</p>
-      <input class="add-name" 
-      type="text" placeholder="firstname lastname" 
-      v-model="inputValues.name" />
+      <input
+        class="add-name"
+        type="text"
+        placeholder="firstname lastname"
+        v-model="inputValues.name"
+      />
       <p class="add-valid-text">valid thru</p>
       <input class="add-valid" type="text" v-model="inputValues.valid" />
       <p class="add-ccv-text">ccv</p>
       <input class="add-ccv" type="text" v-model="inputValues.ccv" />
       <p class="add-vendor-text">vendor</p>
       <select class="add-vendor" v-model="inputValues.vendor" @change="changeVendor">
-        <option v-for="vendor in vendors" :key="vendor" v-text="vendor.name"></option>
+        <option v-for="vendor in vendors" :key="vendor" :style="{background: vendor.color}" v-text="vendor.name"></option>
       </select>
-    </form>
+      <button @click="toAddCard">Add Card</button>
+    </div>
   </div>
 </template>
 
@@ -31,26 +34,29 @@ export default {
   },
   computed: {
     vendors() {
-      return this.$store.getters.getVendorList;
+      return this.$store.getters.getListOfVendor;
     }
   },
   data() {
     return {
-      inputValues : this.card
+      inputValues: this.card,
     };
   },
   methods: {
-    addNewCard() {
+    toAddCard() {
       const newCard = {
-        name: this.addCardHolderName,
-        valid: this.addValidThru,
-        number: this.addCardNumber,
+      valid : this.inputValues.valid,
+      number : this.inputValues.number,
+      name : this.inputValues.name,
+      ccv : this.inputValues.ccv,
+      vendor : this.inputValues.vendor
       }
-      this.$store.state.userCards.push(newCard);
-      // this.$store.getters.addCardToStack
+      this.$store.state.cards.push(newCard);
+      this.$router.push({ name: "Home" });
     },
-    changeVendor(){
-      this.inputValues.vendor
+    changeVendor() {
+      console.log(this.inputValues.vendor)
+      this.inputValues.vendor;
     }
   }
 };
@@ -75,12 +81,13 @@ p {
   display: grid;
   grid-gap: 0.7em;
   grid-template-columns: repeat(2, 120px);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   grid-template-areas:
     "number number"
     "name name"
     "valid ccv"
-    "vendor vendor";
+    "vendor vendor"
+    "button button";
 }
 
 input,
@@ -120,5 +127,17 @@ input[type="text"]:focus {
 .add-vendor,
 .add-vendor-text {
   grid-area: vendor;
+}
+button {
+  grid-area: button;
+  max-width: 280px;
+  text-transform: uppercase;
+  background: black;
+  font-weight: bolder;
+  font-size: 1em;
+  margin-top: 1em;
+  border-radius: 6px;
+  height: 3em;
+  color: white;
 }
 </style>

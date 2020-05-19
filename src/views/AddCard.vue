@@ -3,7 +3,6 @@
     <Top :title="'add a new bank card'" />
     <Card v-bind:card="card" :title="'New Card'" />
     <CardForm v-bind:card="card" />
-    <button @click="toAddCard">Add Card</button>
   </div>
 </template>
 
@@ -30,9 +29,7 @@ export default {
     CardForm
   },
   methods: {
-    toAddCard() {
-      this.$router.push({ name: "Home" });
-    }
+    
   }
 };
 </script>
@@ -40,17 +37,5 @@ export default {
 <style scoped>
 .addcard-wrapper {
   display: grid;
-}
-
-button {
-  max-width: 280px;
-  text-transform: uppercase;
-  background: black;
-  font-weight: bolder;
-  font-size: 1em;
-  margin-top: 1em;
-  border-radius: 6px;
-  height: 3em;
-  color: white;
 }
 </style>

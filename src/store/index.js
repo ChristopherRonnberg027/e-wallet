@@ -5,9 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    activeCard: "5334 5554 8665 1233",
-    cardStackList: [],
-    userCards: [
+    activeCardNumber: "5334 5554 8665 1233",
+    cards: [
       {
          name: 'Christopher Rönnberg', 
          valid: '9/22', 
@@ -33,8 +32,6 @@ export default new Vuex.Store({
         vendor: "ninja", 
         ccv: "543" }
     ],
-    newCards: {
-    },
     vendors: {
       no_vendor: {
         name: "select your vendor",
@@ -42,24 +39,24 @@ export default new Vuex.Store({
       },
       bitcoin: {
         name: "bitcoin inc",
-        color: "yellow"
+        color: "rgb(253,181,85)"
       },
       ninja: {
         name: "ninja bank",
-        color: "black"
+        color: "rgb(61,61,61)"
       },
       blockchain: {
         name: "block chain inc",
-        color: "indigo"
+        color: "rgb(123,83,217)"
       },
       evil: {
         name: "evil corp",
-        color: "red"
+        color: "rgb(210,47,76)"
       }
     }
   },
   getters: {
-    getVendorList(state) {
+    getListOfVendor(state) {
       let vendorList = []
       for (const vendor in state.vendors) {
         let listedVendor = { id: vendor, name: state.vendors[vendor].name }
@@ -67,43 +64,32 @@ export default new Vuex.Store({
       }
       return vendorList;
     },
-  
-    getCardList(state) {
-      return state.userCards
-    },
-
+    
     getActiveCard(state){
-      return state.userCards.find(card => card.number == state.activeCard)
-    },
-
-    getActiveCardNo(state) {
-      return state.activeCardNo
-    },
-
-    getCardStackList(state) {
-      return state.cardStackList
+      return state.cards.find(card => card.number == state.activeCardNumber)
     },
     getNonActiveCards(state){
-      return state.userCards.filter(card => card.number !== state.activeCard)
+      return state.cards.filter(card => card.number !== state.activeCardNumber)
     }
   },
 
   mutations: {
     setActiveCard(state, payload) {
-      state.activeCard = payload
+      state.activeCardNumber = payload
     },
-    loadCardStack(state) {
-      state.cardStackList = state.userCards.filter(card => card.number != state.activeCard)
-    },
+
     addCardToStack(state, payload) {
-      state.cardStackList.splice(payload.index, 1, payload.card)
+      state.cards.push(payload)
     }
   },
+
+
+
   actions: {
-    swapActiveCard(context, payload) {
-      let activeCard = context.getters.getActiveCard
-      context.commit('setActiveCardNo', payload.card.cardNumber)
-      context.commit('addCardToStack', { index: payload.index, card: activeCard })
+    switchCard(context, payload) {
+      // let activeCard = context.getters.getActiveCard
+      context.commit('setActiveCard', payload.card.number)
+      context.commit('addCardToStack', { index: payload.index, card: activeCardNumber })
     }
   },
   modules: {

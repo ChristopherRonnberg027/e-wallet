@@ -1,11 +1,10 @@
 <template>
   <div class="home">
     <Top :title="'e-wall it'" />
-
-    <Card :title="'active card'" v-bind:card="activeCard" />
+    <Card :title="'active card'" :card="activeCard" :style="{borderBottom: '2px solid indigo', paddingBottom: '1em'}" />
     
-    <CardStack v-bind:card="cardsInStack"/>
-    <button @click="addNewCard">add a new card</button>
+    <CardStack :cards="cardsInStack"/>
+    <button @click="toAddNewCard">add a new card</button>
   </div>
 </template>
 
@@ -30,7 +29,7 @@ export default {
     }
   },
   methods: {
-    addNewCard() {
+    toAddNewCard() {
       this.$router.push({ name: "AddCard" });
     }
   }

@@ -1,7 +1,10 @@
 <template>
   <div class="card-stack">
-    <Card class="stack" v-for="(card, index) in cardInfo" :key="card.number" :stackIndex="index" />
-    {{cardInfo}}
+    <Card 
+    class="stack" 
+    v-for="card in cards" 
+    :key="card.number" 
+    :card="card" />
   </div>
 </template>
 
@@ -12,12 +15,7 @@ export default {
     Card
   },
   props: {
-    cardsInStack: Array
-  },
-  computed: {
-    cardInfo() {
-      return this.$store.getters.getNonActiveCards;
-    }
+    cards: Array
   },
   method: {}
 };
@@ -25,25 +23,25 @@ export default {
 
 <style scoped>
 .card-stack {
+  padding-top: 1.5em;
+  padding-bottom: 5em;
   margin-top: 3em;
   display: grid;
-  grid-template-columns: 250px 1fr;
-  grid-template-rows: 150px 1fr;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1em;
+  border: none;
+  transition: 0.2s;
 }
 
-.stack {
-  /* position: relative; */
-  grid-area: 1/1/2/2;
+.card-stack:hover {
+  grid-auto-rows: 10em;
 }
 
-/* .stack:nth-child(3){
-  margin-bottom:3em;
-}
-.stack:nth-child(2){
-  margin-bottom:6em;
+.stack{
+  border: none
 }
 
-.stack:nth-child(1){
-  margin-bottom:9em;
-} */
+.stack:focus{
+  border: 2px solid indigo;
+}
 </style>
