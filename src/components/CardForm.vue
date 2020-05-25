@@ -12,7 +12,7 @@
       <input class="add-ccv" type="text" placeholder="XXX" v-model="card.ccv" />
       <p class="add-vendor-text">vendor</p>
       <select class="add-vendor" v-model="card.vendor">
-        <option v-for="(vend, index) in vendors" :key="index" v-text="vend.name"></option>
+        <option v-for="(vend, index) in vendors" :key="index" :on="vend" v-text="vend.name"></option>
       </select>
       <button @click="toAddCard">Add Card</button>
     </div>

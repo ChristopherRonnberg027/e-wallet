@@ -42,19 +42,19 @@ export default new Vuex.Store({
         cardcolor: "grey"
       },
       bitcoin: {
-        name: "bitcoin inc",
+        name: "bitcoin",
         cardcolor: "#fdb455"
       },
       ninja: {
-        name: "ninja bank",
+        name: "ninja",
         cardcolor: "#3d3d3d"
       },
       blockchain: {
-        name: "block chain inc",
+        name: "blockchain",
         cardcolor: "#7b53d9"
       },
       evil: {
-        name: "evil corp",
+        name: "evil",
         cardcolor: "#d22f4d"
       }
     }

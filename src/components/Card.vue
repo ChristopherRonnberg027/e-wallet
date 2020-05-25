@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     vendorLogo() {
-      return require("@/assets/vendor-" + this.card.vendor + ".svg");
+      return require("../assets/vendor-" + this.card.vendor + ".svg");
     },
     chipSymbol() {
       return require("../assets/chip-light.svg");
