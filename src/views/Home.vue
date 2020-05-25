@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Top :topTitle="'e-wall it'" />
+    <Top :topTitle="'e-wall'" />
     <Card :title="'active card'" :card="cardActive" />
     
     <CardStack :cards="cardsInStack"/>

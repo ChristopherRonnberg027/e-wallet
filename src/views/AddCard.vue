@@ -1,8 +1,8 @@
 <template>
   <div class="addcard-wrapper">
     <Top :topTitle="'add a new bank card'" />
-    <Card v-bind:card="card" :title="'new card'" />
-    <CardForm v-bind:card="card" />
+    <Card :card="card" :title="'new card'" />
+    <CardForm :card="card" />
     
   </div>
 </template>
@@ -15,7 +15,6 @@ export default {
   data() {
     return {
       card: {
-        title: "new card",
         name: "",
         valid: "",
         number: "",

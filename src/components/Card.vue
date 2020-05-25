@@ -1,15 +1,13 @@
 <template>
   <div class="card-wrapper">
-    <p class="card-title" >{{title}}</p>
-    <article class="card" 
-    :style="{background: vendor.color}" 
-    v-on:click="clickThis">
+    <p class="card-title">{{title}}</p>
+    <article class="card" v-bind:class="[card.vendor]" v-on:click="switchCards">
       <section class="top-card">
         <div class="chip">
-          <img v-bind:src="getChip()" alt="chip" />
+          <img v-bind:src="chipSymbol()" alt="card chip" />
         </div>
         <div class="symbol">
-          <img :src="getVendor()" alt="symbol" />
+          <img :src="vendorLogo()" alt="corp symbol" />
         </div>
       </section>
       <section class="numbers">
@@ -37,14 +35,13 @@ export default {
     }
   },
   methods: {
-    getVendor() {
+    vendorLogo() {
       return require("@/assets/vendor-" + this.card.vendor + ".svg");
     },
-    getChip() {
+    chipSymbol() {
       return require("../assets/chip-light.svg");
     },
-    clickThis() {
-      console.log("you clicked me")
+    switchCards() {
       this.$store.dispatch("switchCard", {
         index: this.stackIndex,
         card: this.card
@@ -154,5 +151,26 @@ export default {
 
 .date-text {
   text-align: right;
+}
+
+.ninja {
+  background: #3d3d3d;
+}
+
+.blockchain {
+  background: #7b53d9;
+}
+
+.evil {
+  background: #d22f4d;
+}
+
+.bitcoin {
+  background: #fdb455;
+  color: black;
+}
+
+.novendor{
+  background: lightblue;
 }
 </style>

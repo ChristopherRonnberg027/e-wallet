@@ -11,13 +11,8 @@
       <p class="add-ccv-text">ccv</p>
       <input class="add-ccv" type="text" placeholder="XXX" v-model="card.ccv" />
       <p class="add-vendor-text">vendor</p>
-      <select class="add-vendor" v-model="card.vendor" @change="changeVendor">
-        <option
-          v-for="(vendor, index) in vendors"
-          :key="index"
-          :style="{background: vendor.color}"
-          v-text="vendor.name"
-        ></option>
+      <select class="add-vendor" v-model="card.vendor">
+        <option v-for="(vend, index) in vendors" :key="index" v-text="vend.name"></option>
       </select>
       <button @click="toAddCard">Add Card</button>
     </div>
@@ -30,25 +25,13 @@ export default {
     event: "change"
   },
   props: {
+    title: String,
     card: Object
   },
   computed: {
     vendors() {
       return this.$store.getters.getListOfVendor;
     }
-    // vendor() {
-    //   return this.$store.state.vendors[this.card.vendor];
-    // }
-  },
-  data() {
-    return {
-      // inputValues: this.card,
-      // valid : '',
-      // number : '',
-      // name : '',
-      // ccv : '',
-      // vendor : ''
-    };
   },
   methods: {
     toAddCard() {
@@ -57,14 +40,14 @@ export default {
         number: this.card.number,
         name: this.card.name,
         ccv: this.card.ccv,
-        vendor: this.card.vendor
+        vendor : this.card.vendor
       };
       this.$store.state.cards.push(newCard);
       this.$router.push({ name: "Home" });
     },
     changeVendor() {
-      console.log(this.card.vendor);
-      this.card.vendor;
+      console.log(this.card.vendor)
+      this.card.vendor = this.vendor 
     }
   }
 };
@@ -100,7 +83,7 @@ p {
 
 input,
 select {
-  font-family: "Consolas";
+  /* font-family: "Consolas"; */
   text-transform: uppercase;
   width: 100%;
   margin-top: 1.1em;
